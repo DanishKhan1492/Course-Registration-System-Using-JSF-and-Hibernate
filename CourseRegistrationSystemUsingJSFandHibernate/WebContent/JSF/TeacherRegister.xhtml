@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>First Application Using JSF</title>
+	<h:outputStylesheet name="/css/login.css" />
+	<f:loadBundle basename="app.Messages.messages" var="message"/>
+</h:head>
+
+<h:body>
+	<h:form id="loginForm">
+		<DIV id="container">
+		<DIV id="formContainer">
+			<p:messages globalOnly="true" autoUpdate="true"  closable="true" />
+			<h:form>
+				<p:panel id="panel">
+					
+						<h:panelGrid columns="3" cellpadding="5">
+						
+							<p:outputLabel for="fullName" value="Full Name" />
+							<p:inputText id="fullName" value="#{teacherBean.teacherName}" required="true" requiredMessage="#{message.userNameRequired}" validatorMessage="#{message.userNameLength}" placeholder="Full Name">
+								<f:validateLength minimum="3" />
+							</p:inputText>
+							<p:messages for="fullName" closable="true" />
+						
+							<p:outputLabel for="userName" value="User Name" />
+							<p:inputText id="userName" value="#{teacherBean.userName}" required="true" requiredMessage="#{message.userNameRequired}" validatorMessage="#{message.userNameLength}" placeholder="User Name">
+								<f:validateLength minimum="3" />
+							</p:inputText>
+							<p:messages for="userName" closable="true" />
+								
+							<p:outputLabel for="password" value="Password" />
+							<p:password id="password" value="#{teacherBean.password}" required="true" requiredMessage="#{message.passwordRequired}" validatorMessage="#{message.passwordLength}" placeholder="Password" >
+								<f:validateLength minimum="5" maximum="15" />
+							</p:password>
+							<p:messages for="password"  closable="true" />
+							
+							<p:outputLabel for="department" value="Password" />
+							<p:selectOneMenu id="department" value="#{teacherBean.departmentName}">
+								<f:selectItems value="#{teacherRegisterController.departmentNames}" />
+							</p:selectOneMenu>
+							<p:messages for="department"  closable="true" />
+									
+							<p:outputLabel />
+							<p:commandButton value="Submit" update="panel" action="#{teacherRegisterController.saveTeacher}" icon="ui-icon-check"/>
+							<p:outputLabel />
+						</h:panelGrid>
+					
+				</p:panel>
+			</h:form>
+		</DIV>
+		</DIV>
+	</h:form>
+</h:body>
+
+</html>

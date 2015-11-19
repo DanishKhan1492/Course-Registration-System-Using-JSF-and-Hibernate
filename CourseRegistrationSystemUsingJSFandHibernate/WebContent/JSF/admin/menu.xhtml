@@ -1,0 +1,31 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<h:outputStylesheet name="/css/adminMenu.css" />
+</h:head>
+<body>
+	<div id="header">
+		<div class="container">
+			<h:form>
+					<p:menubar>
+						<p:menuitem style="padding:10px;" label="Home" value="Home" action="#{adminRequestForwardController.forwardAdminFormRequest()}" />
+						<p:menuitem style="padding:10px;" label="Add Course" value="Add Course" action="#{adminRequestForwardController.forwardAddCourseRequest()}" />
+						<p:menuitem style="padding:10px;" label="Add Department" value="Add Department" action="#{adminRequestForwardController.forwardAddDepartmentCourseRequest()}" />
+						<p:menuitem style="padding:10px;" label="Add Semester Courses" value="Add Semester Course" action="#{adminRequestForwardController.forwardAddSemesterCourseRequest()}" />
+						<p:menuitem style="padding:10px;" label="Assign Teacher Course" value="Assign Teacher Course" action="#{adminRequestForwardController.forwardAssignTeacherCourseRequest()}" />
+						<p:menuitem style="padding:10px;" label="Show Courses" value="Show Course" action="#{adminRequestForwardController.forwardShowCourseRequest()}" />
+						<p:menuitem style="padding:10px;" label="Show Department" value="Show Departments" action="#{adminRequestForwardController.forwardShowDepartmentsCourseRequest()}" />
+						<p:menuitem style="padding:10px;" label="Show Semester Courses" value="Show Semester Course" action="#{adminRequestForwardController.forwardShowSemesterCourseRequest()}" />
+						<p:menuitem style="padding:10px;" label="Show Assign Teacher Course" value="Show Assign Teacher Course" action="#{adminRequestForwardController.ShowAssignTeacherCourseRequest()}" />
+						<p:menuitem style="padding:10px;" label="Log Out" value="Log Out" action="#{loginController.invalidateUser}" />
+					</p:menubar>
+				</h:form>
+				
+		</div>
+
+	</div>
+</body>
+</html>
+

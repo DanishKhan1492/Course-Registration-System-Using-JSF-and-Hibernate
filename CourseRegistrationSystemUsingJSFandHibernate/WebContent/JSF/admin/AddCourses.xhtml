@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<f:loadBundle basename="app.Messages.messages" var="message" />
+</h:head>
+<h:body>
+
+	<h:outputLabel renderd="#{not empty user}">
+		<ui:composition template="/JSF/Template/AdminTemplate.xhtml">
+		<ui:define name="title">Add Courses</ui:define>
+
+		<ui:define name="menu">
+			<ui:include src="menu.xhtml"></ui:include>
+		</ui:define>
+
+		<ui:define name="content">
+			<h:outputStylesheet name="/css/mainForm.css" />
+			<h:outputLabel renderd="#{not empty user}">
+				<div id="formContainer">
+					<p:messages autoUpdate="true" globalOnly="true" closable="true" />
+					<h:form>
+						<h:panelGrid columns="3" cellpadding="5">
+						<p:outputLabel for="courseName" value="Course Name"/>
+						<p:inputText id="courseName" value="#{courseBean.courseName}" required="true" requiredMessage="#{message.CourseNameRequired}"  placeholder="Course Name"/>
+						<p:messages for="courseName" closable="true" autoUpdate="true"/>
+						
+						<p:outputLabel for="courseCode" value="Course Code"/>
+						<p:inputText id="courseCode" value="#{courseBean.courseCode}" required="true" requiredMessage="#{message.CourseCodeRequired}"  placeholder="Course Code"/>
+						<p:messages for="courseCode" closable="true" autoUpdate="true"/>
+						
+						<p:outputLabel for="creditHours" value="Credit Hours"/>
+						<p:inputText id="creditHours" value="#{courseBean.creditHours}" required="true" requiredMessage="#{message.CreditHoursRequired}"  placeholder="Credit Hours"/>
+						<p:messages for="creditHours" closable="true" autoUpdate="true"/>
+						
+						<p:outputLabel />
+						<p:commandButton value="Add Course" action="#{courseController.addCourse}" />
+						<p:outputLabel />
+						
+						</h:panelGrid>
+					</h:form>
+					
+				</div>
+			</h:outputLabel>
+		</ui:define>
+	</ui:composition>
+	</h:outputLabel>
+	
+
+</h:body>
+</html>

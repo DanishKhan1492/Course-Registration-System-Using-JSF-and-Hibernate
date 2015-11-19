@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+	<ui:composition template="/JSF/Template/AdminTemplate.xhtml">
+		<ui:define name="title">Add Courses</ui:define>
+
+		<ui:define name="menu">
+			<ui:include src="menu.xhtml"></ui:include>
+		</ui:define>
+
+		<ui:define name="content">
+			<h:outputStylesheet name="/css/mainForm.css" />
+			<h:outputLabel renderd="#{not empty user}">
+				<p:messages globalOnly="true" closable="true" autoUpdate="true" />
+				<div id="showDataContainer">
+					<h:form>
+						<p:dataTable var="course" value="#{showSemesterCourseController.semCourseList}"  scrollable="true" scrollWidth="900px;">
+							<p:column headerText="Course Id" >
+								<h:outputText value="#{course.semCourseId}" />
+							</p:column>
+							<p:column headerText="Semester Number">
+								<h:outputText rendered="#{showSemesterCourseController.semCourse ne course}" value="#{course.semesterNumber}" />
+								<h:inputText rendered="#{showSemesterCourseController.semCourse eq course}" value="#{showSemesterCourseController.semCourse.semesterNumber}" />
+							</p:column>
+							<p:column headerText="Course Name">
+								<h:outputText rendered="#{showSemesterCourseController.semCourse ne course}" value="#{course.semCourseName}" />
+								<p:selectOneMenu rendered="#{showSemesterCourseController.semCourse eq course}" value="#{showSemesterCourseController.semCourse.semCourseName}" style="width:150px;" id="countries" validatorMessage="#{message.SelectCourse}">
+	  								<f:selectItems  value="#{showSemesterCourseController.semCourseName}" />
+	  							</p:selectOneMenu>	
+							</p:column>
+							<p:column headerText="Update">
+								<p:commandButton ajax="false" rendered="#{showSemesterCourseController.semCourse ne course}" value="Edit" action="#{showSemesterCourseController.modify(course)}" />
+								<p:commandButton ajax="false" rendered="#{showSemesterCourseController.semCourse eq course}" value="Update" action="#{showSemesterCourseController.updateSemesterCourse()}" />
+							</p:column>
+							<p:column headerText="Delete">
+								<p:commandButton
+									action="#{deleteSemesterCourseController.deleteCourse(course)}"
+									value="Delete" />
+							</p:column>
+						</p:dataTable>
+					</h:form>
+				</div>
+			</h:outputLabel>
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

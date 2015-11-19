@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<f:loadBundle basename="app.Messages.messages" var="message" />
+</h:head>
+<h:body>
+
+	<h:outputLabel renderd="#{not empty user}">
+		<ui:composition template="/JSF/Template/AdminTemplate.xhtml">
+		<ui:define name="title">Add Courses</ui:define>
+
+		<ui:define name="menu">
+			<ui:include src="menu.xhtml"></ui:include>
+		</ui:define>
+
+		<ui:define name="content">
+			<h:outputStylesheet name="/css/mainForm.css" />
+			<h:outputLabel renderd="#{not empty user}">
+				<div id="formContainer">
+					<p:messages autoUpdate="true" globalOnly="true" closable="true" />
+					<h:form>
+						<h:panelGrid columns="3" cellpadding="5" >
+						
+						<p:outputLabel for="department" value="Select Department"/>	
+						<p:selectOneMenu id="department" value="#{assignTeacherCourses.departmentName}">
+							<p:ajax event="change" update="teacher" listener="#{assignTeacherCourses.populateTeachers}" />
+							<f:selectItems value="#{assignTeacherCourses.departmentNames}" />
+						</p:selectOneMenu>
+						<p:outputLabel />
+						
+						<p:outputLabel for="teacher" value="Select Teacher"/>
+						<p:selectOneMenu id="teacher" value="#{assignTeacherCourses.teacherName}">
+							<p:ajax event="change" update="courses" listener="#{assignTeacherCourses.populateCourses}" />
+							<f:selectItems value="#{assignTeacherCourses.teacherNames}" />
+						</p:selectOneMenu>
+						<p:outputLabel />
+						
+						<p:outputLabel for="semester" value="Select Semester"/>
+						<p:selectOneMenu id="semester" value="#{assignTeacherCourses.semester}">
+							<f:selectItems value="#{assignTeacherCourses.semesterList}" />
+						</p:selectOneMenu>
+						<p:outputLabel />
+						
+						
+						<p:outputLabel for="courses" value="Course Name"/>
+						<p:selectManyCheckbox id="courses" value="#{assignTeacherCourses.assignedCourses}" layout="grid" columns="3">
+							<f:selectItems value="#{assignTeacherCourses.courseList}" />
+						</p:selectManyCheckbox>
+						<p:messages for="courseName" closable="true" autoUpdate="true"/>
+						
+						<p:outputLabel />
+						<p:commandButton value="Assign Courses" action="#{assignTeacherCourses.assignCoursesToTeacher}" />
+						<p:outputLabel />
+						
+						</h:panelGrid>
+					</h:form>
+					
+				</div>
+			</h:outputLabel>
+		</ui:define>
+	</ui:composition>
+	</h:outputLabel>
+	
+
+</h:body>
+</html>

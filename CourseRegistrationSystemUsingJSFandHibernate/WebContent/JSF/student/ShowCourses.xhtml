@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+	<ui:composition template="/JSF/Template/AdminTemplate.xhtml">
+		<ui:define name="title">Add Courses</ui:define>
+
+		<ui:define name="menu">
+			<ui:include src="menu.xhtml"></ui:include>
+		</ui:define>
+
+		<ui:define name="content">
+			<h:outputStylesheet name="/css/mainForm.css" />
+				<p:messages globalOnly="true" closable="true" autoUpdate="true" />
+				<div id="showDataContainer">
+					<h:form>
+						<p:dataTable var="stdCourse" value="#{showSelectedCourseController.stdSelectedCourseList}"  scrollable="true" scrollWidth="900px;">
+							<p:column headerText="Course Id" >
+								<h:outputText value="#{stdCourse.sSc_Id}" />
+							</p:column>
+							<p:column headerText="Course Name">
+								<h:outputText value="#{stdCourse.courseName}" />
+							</p:column>
+							<p:column headerText="Course Code">
+								<h:outputText value="#{stdCourse.courseCode}" />
+							</p:column>
+							<p:column headerText="Credit Hours">
+								<h:outputText value="#{stdCourse.creditHours}" />
+							</p:column>
+						</p:dataTable>
+					</h:form>
+				</div>
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

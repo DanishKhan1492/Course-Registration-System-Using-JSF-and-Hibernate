@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<f:loadBundle basename="app.Messages.messages" var="message" />
+</h:head>
+<h:body>
+	<ui:composition template="/JSF/Template/AdminTemplate.xhtml">
+		<ui:define name="title">Main Form</ui:define>
+
+		<ui:define name="menu">
+			<ui:include src="menu.xhtml"></ui:include>
+		</ui:define>
+
+		<ui:define name="content">
+			<h:outputStylesheet name="/css/mainForm.css" />
+			<h:outputLabel renderd="#{not empty user}">
+				<h2>Welcome #{user} to Admin panel</h2>
+				<p>You can Do following Functions <br/> <br/>
+					<strong >1: Add Course <br/> <br/>
+							2: Add Semester Course <br/><br/>
+							3: Add Department <br/><br/>
+							4: Assign Teacher Course <br/><br/>
+							5: View Course <br/><br/>
+							6: View Semester Course <br/> <br/>
+							7: View Student Course <br/> <br/>
+							8: View Teacher Assigned Course </strong></p>
+				<p>
+					Above Functionality can be selected from Menu Above........
+				</p>
+			</h:outputLabel>
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

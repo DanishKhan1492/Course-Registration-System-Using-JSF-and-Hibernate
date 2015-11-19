@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<f:loadBundle basename="app.Messages.messages" var="message" />
+</h:head>
+<h:body>
+
+	<h:outputLabel renderd="#{not empty user}">
+		<ui:composition template="/JSF/Template/AdminTemplate.xhtml">
+		<ui:define name="title">Add Courses</ui:define>
+
+		<ui:define name="menu">
+			<ui:include src="menu.xhtml"></ui:include>
+		</ui:define>
+
+		<ui:define name="content">
+			
+			<h:panelGroup rendered="#{registered != 'Registered'}">
+				<h:outputStylesheet name="/css/mainForm.css" />
+				<div id="formContainer">
+					<p:messages autoUpdate="true" globalOnly="true" closable="true" />
+					<h:form>
+						<h:panelGrid columns="3" cellpadding="5">
+						<p:outputLabel for="semesterNumber" value="Semester Number"/>
+						<p:selectOneMenu id="semesterNumber" value="#{selectCourseController.semesterSelect}">
+							<p:ajax event="change" update="courseName" listener="#{selectCourseController.populateCourses}" />
+							<f:selectItems value="#{selectCourseController.semester}" />
+						</p:selectOneMenu>
+						<p:messages for="semesterNumber" closable="true" autoUpdate="true"/>
+						
+						<p:outputLabel for="courseName" value="Course Name"/>
+						<p:selectManyCheckbox id="courseName" value="#{selectCourseController.selectedCourses}">
+							<f:selectItems value="#{selectCourseController.courseList}" />
+						</p:selectManyCheckbox>
+						<p:messages for="courseName" closable="true" autoUpdate="true"/>
+						
+						<p:outputLabel />
+						<p:commandButton value="Select Courses" action="#{selectCourseController.addSelectedCourses()}"/>
+						<p:outputLabel />
+						
+						</h:panelGrid>
+					</h:form>
+					
+				</div>
+			</h:panelGroup>
+			
+			<h:panelGroup rendered="#{registered eq 'Registered'}">
+				<h:outputText style="font:20px;" id="showMessage" value="You have already Registered Courses" />
+			</h:panelGroup>
+			
+		</ui:define>
+	</ui:composition>
+	</h:outputLabel>
+	
+
+</h:body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+	<ui:composition template="/JSF/Template/AdminTemplate.xhtml">
+		<ui:define name="title">Add Courses</ui:define>
+
+		<ui:define name="menu">
+			<ui:include src="menu.xhtml"></ui:include>
+		</ui:define>
+
+		<ui:define name="content">
+			<h:outputStylesheet name="/css/mainForm.css" />
+				<p:messages globalOnly="true" closable="true" autoUpdate="true" />
+				<div id="showDataContainer">
+					<h:form>
+						<h:panelGrid columns="3" cellpadding="5" >	
+							<p:outputLabel for="teacher" value="Select Teacher"/>	
+							<p:selectOneMenu id="teacher" value="#{showTeacherAssignCoursesController.teacherUserName}">
+								<p:ajax event="change" update="teacherCoursesTable" listener="#{showTeacherAssignCoursesController.showTeacherCourses}" />
+								<f:selectItems value="#{showTeacherAssignCoursesController.userNamesOfTeachers}" />
+							</p:selectOneMenu>
+							<p:outputLabel />
+						</h:panelGrid>
+						
+						<p:dataTable id="teacherCoursesTable" var="teacherCourse" value="#{showTeacherAssignCoursesController.teacherCoursesList}"  scrollable="true" scrollWidth="900px;">
+							<p:column headerText="Id" >
+								<h:outputText value="#{teacherCourse.id}" />
+							</p:column>
+							<p:column headerText="Teacher Name">
+								<h:outputText  value="#{teacherCourse.teacherName}" />
+							</p:column>
+							<p:column headerText="Course Name">
+								<h:outputText value="#{teacherCourse.courseName}" />
+							</p:column>
+							<p:column headerText="Credit Hours">
+								<h:outputText  value="#{teacherCourse.creditHours}" />
+							</p:column>
+							
+							<p:column headerText="Semester">
+								<h:outputText  value="#{teacherCourse.semester}" />
+							</p:column>
+							
+							<p:column headerText="Delete">
+								<p:commandButton action="#{showTeacherAssignCoursesController.deleteTeacherCourse(teacherCourse)}" value="Delete" />
+							</p:column>
+						</p:dataTable>
+					</h:form>
+				</div>
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

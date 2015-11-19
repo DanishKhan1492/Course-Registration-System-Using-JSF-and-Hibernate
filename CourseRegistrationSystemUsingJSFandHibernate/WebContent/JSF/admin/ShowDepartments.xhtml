@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+	<ui:composition template="/JSF/Template/AdminTemplate.xhtml">
+		<ui:define name="title">Add Courses</ui:define>
+
+		<ui:define name="menu">
+			<ui:include src="menu.xhtml"></ui:include>
+		</ui:define>
+
+		<ui:define name="content">
+			<h:outputStylesheet name="/css/mainForm.css" />
+			<h:outputLabel renderd="#{not empty user}">
+				<p:messages globalOnly="true" closable="true" autoUpdate="true" />
+				<div id="showDataContainer">
+					<h:form>
+						<p:dataTable var="department" value="#{showDepartmentController.departmentList}"  scrollable="true" scrollWidth="900px;">
+							<p:column headerText="Department Id" >
+								<h:outputText value="#{department.departmentId}" />
+							</p:column>
+							<p:column headerText="Department Name">
+								<h:outputText rendered="#{showDepartmentController.department ne department}" value="#{department.departmentName}" />
+								<h:inputText rendered="#{showDepartmentController.department eq department}" value="#{showDepartmentController.department.departmentName}" />
+							</p:column>
+							<p:column headerText="Update">
+								<p:commandButton ajax="false" rendered="#{showDepartmentController.department ne department}" value="Edit" action="#{showDepartmentController.modify(department)}" />
+								<p:commandButton ajax="false" rendered="#{showDepartmentController.department eq department}" value="Update" action="#{showDepartmentController.updateDepartment}" />
+							</p:column>
+							<p:column headerText="Delete">
+								<p:commandButton
+									action="#{deleteController.deleteCourse(course)}"
+									value="Delete" />
+							</p:column>
+						</p:dataTable>
+					</h:form>
+				</div>
+			</h:outputLabel>
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

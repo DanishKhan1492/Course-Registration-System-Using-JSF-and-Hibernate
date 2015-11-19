@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>First Application Using JSF</title>
+	<h:outputStylesheet name="/css/login.css" />
+	<f:loadBundle basename="app.Messages.messages" var="message"/>
+</h:head>
+
+<h:body>
+	<h:form id="loginForm">
+		<DIV id="container">
+		<DIV id="formContainer">
+			<p:messages globalOnly="true" autoUpdate="true"  closable="true" />
+			<h:form>
+				<p:panel id="panel">
+					
+						<h:panelGrid columns="3" cellpadding="5">
+						
+							<p:outputLabel for="userName" value="User Name" />
+							<p:inputText id="userName" value="#{authenticateBean.userName}" required="true" requiredMessage="#{message.userNameRequired}" validatorMessage="#{message.userNameLength}" placeholder="User Name">
+								<f:validateLength minimum="3" />
+							</p:inputText>
+							<p:messages for="userName" closable="true" />
+								
+							<p:outputLabel for="password" value="Password" />
+							<p:password id="password" value="#{authenticateBean.password}" required="true" requiredMessage="#{message.passwordRequired}" validatorMessage="#{message.passwordLength}" placeholder="Password" >
+								<f:validateLength minimum="5" maximum="15" />
+							</p:password>
+							<p:messages for="password"  closable="true" />
+							
+							<p:outputLabel for="role" value="Role" />
+							<p:selectOneMenu id="role" required="true" value="#{authenticateBean.role}" requiredMessage="Please Select One">
+								<f:selectItem itemLabel="Admin" itemValue="admin"/>
+								<f:selectItem itemLabel="Student" itemValue="student" />
+								<f:selectItem itemLabel="Teacher" itemValue="teacher" />
+							</p:selectOneMenu>
+							<p:messages for="role" closable="true" />
+							
+							
+							<p:commandButton value="Submit" update="panel" action="#{loginController.authenticateUser}" icon="ui-icon-check"/>
+							<a style="text-decoration: none" href="/CourseRegistrationSystemUsingJSFandHibernate/studentRegestration">Register Student</a>
+							<a style="text-decoration: none" href="/CourseRegistrationSystemUsingJSFandHibernate/teacherRegestration">Register Teacher</a>
+						</h:panelGrid>
+					
+				</p:panel>
+			</h:form>
+		</DIV>
+		</DIV>
+	</h:form>
+</h:body>
+
+</html>

@@ -1,0 +1,25 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<h:outputStylesheet name="/css/adminMenu.css" />
+</h:head>
+<body>
+	<div id="header">
+		<div class="container">
+			<h:form>
+					<p:menubar>
+						<p:menuitem style="padding:30px;" label="Home" value="Home" action="#{adminRequestForwardController.forwardStudentFormRequest()}" />
+						<p:menuitem style="padding:30px;" label="Select Courses For Semester" value="Select Course"  action="#{adminRequestForwardController.forwardSelectCourseRequest()}"/>
+						<p:menuitem style="padding:30px;" label="Show Selected Courses" value="Show Selected Course" action="#{adminRequestForwardController.forwardShowSelectedCourseRequest()}" />
+						<p:menuitem style="padding:30px;" label="Log Out" value="Log Out" action="#{loginController.invalidateUser}" />
+					</p:menubar>
+				</h:form>
+				
+		</div>
+
+	</div>
+</body>
+</html>
+

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pretty-config xmlns="http://ocpsoft.org/schema/rewrite-config-prettyfaces" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
+                      http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
+	
+	<url-mapping id="login">
+		<pattern value="/login" />
+		<view-id value="/faces/JSF/Login.xhtml" /> <!-- JSF View Id -->
+	</url-mapping>
+	
+	<url-mapping id="adminForm">
+		<pattern value="/admin/adminForm"/>
+		<view-id value="/faces/JSF/admin/mainForm.xhtml"/>
+	</url-mapping>
+	
+	<url-mapping id="courses">
+		<pattern value="/admin/courses"/>
+		<view-id value="/faces/JSF/admin/AddCourses.xhtml"/>
+	</url-mapping>
+	
+	<url-mapping id="showCourses">
+		<pattern value="/admin/showCourses"/>
+		<view-id value="/faces/JSF/admin/ShowCourses.xhtml"/>
+	</url-mapping>
+	
+	<url-mapping id="addSemesterCourse">
+		<pattern value="/admin/addSemesterCourse"/>
+		<view-id value="/faces/JSF/admin/AddSemesterCourse.xhtml"/>
+	</url-mapping>
+	
+	<url-mapping id="showSemesterCourse">
+		<pattern value="/admin/showSemesterCourse"/>
+		<view-id value="/faces/JSF/admin/ShowSemesterCourses.xhtml"/>
+	</url-mapping>
+	
+	<url-mapping id="addDepartment">
+		<pattern value="/admin/addDepartment"/>
+		<view-id value="/faces/JSF/admin/AddDepartment.xhtml"/>
+	</url-mapping>
+	
+	<url-mapping id="showDepartment">
+		<pattern value="/admin/showDepartment"/>
+		<view-id value="/faces/JSF/admin/ShowDepartments.xhtml"/>
+	</url-mapping>
+	
+	<url-mapping id="assignCoursesToTeacher">
+		<pattern value="/admin/assignCoursesToTeacher"/>
+		<view-id value="/faces/JSF/admin/AssignCoursesToTeacher.xhtml"/>
+	</url-mapping>
+	
+	<url-mapping id="showAssignCoursesToTeacher">
+		<pattern value="/admin/showAssignCoursesToTeacher"/>
+		<view-id value="/faces/JSF/admin/ShowTeacherAssignedCourses.xhtml"/>
+	</url-mapping>
+	
+	<!-- Student Mapping Area -->
+	
+	<url-mapping id="studentRegestration">
+		<pattern value="/studentRegestration"/>
+		<view-id value="/faces/JSF/Register.xhtml"/>
+	</url-mapping>
+	
+	<url-mapping id="selectCourses">
+		<pattern value="/selectCourses"/>
+		<view-id value="/faces/JSF/student/SelectCourses.xhtml"/>
+	</url-mapping>
+	
+	<url-mapping id="studentMenu">
+		<pattern value="/studentMenu"/>
+		<view-id value="/faces/JSF/student/menu.xhtml"/>
+	</url-mapping>
+	
+	<url-mapping id="showStudentCourses">
+		<pattern value="/showStudentCourses"/>
+		<view-id value="/faces/JSF/student/ShowCourses.xhtml"/>
+	</url-mapping>
+	
+	
+	<!-- Teacher Mapping Area -->
+	
+	<url-mapping id="teacherRegestration">
+		<pattern value="/teacherRegestration"/>
+		<view-id value="/faces/JSF/TeacherRegister.xhtml"/>
+	</url-mapping>
+	
+	<url-mapping id="showTeacherMenu">
+		<pattern value="/showTeacherMenu"/>
+		<view-id value="/faces/JSF/Teacher/TeacherMenu.xhtml"/>
+	</url-mapping>
+	
+	<url-mapping id="showTeacherCourses">
+		<pattern value="/showTeacherCourses"/>
+		<view-id value="/faces/JSF/Teacher/ShowTeacherCourses.xhtml"/>
+	</url-mapping>
+	
+</pretty-config>

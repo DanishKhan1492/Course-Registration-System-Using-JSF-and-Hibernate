@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+	<ui:composition template="/JSF/Template/AdminTemplate.xhtml">
+		<ui:define name="title">Add Courses</ui:define>
+
+		<ui:define name="menu">
+			<ui:include src="menu.xhtml"></ui:include>
+		</ui:define>
+
+		<ui:define name="content">
+			<h:outputStylesheet name="/css/mainForm.css" />
+			<h:outputLabel renderd="#{not empty user}">
+				<p:messages globalOnly="true" closable="true" autoUpdate="true" />
+				<div id="showDataContainer">
+					
+					<h:form>
+						<h:panelGrid columns="3" cellpadding="5">
+							<p:outputLabel for="courseName" value="Course Name"/>
+							<p:inputText id="courseName" value="#{courseBean.courseName}" required="true" requiredMessage="#{message.CourseNameRequired}"  placeholder="Course Name"/>
+							<p:messages for="courseName" closable="true" autoUpdate="true"/>
+							
+							<p:outputLabel />
+							<p:commandButton value="Add Course" action="#{courseController.addCourse}" />
+							<p:outputLabel />
+						</h:panelGrid>
+					</h:form>
+					
+					<h:form>
+						<p:dataTable var="course" value="#{showCourseController.courses}"  scrollable="true" scrollWidth="900px;">
+							<p:column headerText="Course Id" >
+								<h:outputText value="#{course.courseId}" />
+							</p:column>
+							<p:column headerText="Course Name">
+								<h:outputText rendered="#{showCourseController.course ne course}" value="#{course.courseName}" />
+								<h:inputText rendered="#{showCourseController.course eq course}" value="#{showCourseController.course.courseName}" />
+							</p:column>
+							<p:column headerText="Course Code">
+								<h:outputText rendered="#{showCourseController.course ne course}" value="#{course.courseCode}" />
+								<h:inputText rendered="#{showCourseController.course eq course}" value="#{showCourseController.course.courseCode}" />
+							</p:column>
+							<p:column headerText="Credit Hours">
+								<h:outputText rendered="#{showCourseController.course ne course}" value="#{course.creditHours}" />
+								<h:inputText rendered="#{showCourseController.course eq course}" value="#{showCourseController.course.creditHours}" />
+							</p:column>
+							<p:column headerText="Update">
+								<p:commandButton ajax="false" rendered="#{showCourseController.course ne course}" value="Edit" action="#{showCourseController.modifyCourse(course)}" />
+								<p:commandButton ajax="false" rendered="#{showCourseController.course eq course}" value="Update" action="#{showCourseController.updateCourse}" />
+							</p:column>
+							<p:column headerText="Delete">
+								<p:commandButton
+									action="#{deleteController.deleteCourse(course)}"
+									value="Delete" />
+							</p:column>
+						</p:dataTable>
+					</h:form>
+				</div>
+			</h:outputLabel>
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>
